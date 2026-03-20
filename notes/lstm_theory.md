@@ -1,97 +1,150 @@
-# 🧠 LSTM (Long Short-Term Memory) - Complete Guide
+# 🧠 LSTM (Long Short-Term Memory) Notes
 
-This repository is dedicated to understanding **LSTM (Long Short-Term Memory)** networks in deep learning.
+## 📌 1. Introduction
 
----
+LSTM (Long Short-Term Memory) is a type of **Recurrent Neural Network (RNN)** designed to handle **sequential data**.
 
-## 📌 What is LSTM?
+Examples of sequential data:
 
-LSTM is a special type of Recurrent Neural Network (RNN) designed to handle **sequential data** and overcome the **vanishing gradient problem**.
-
----
-
-## ⚙️ Why LSTM?
-
-Traditional RNNs fail to remember long-term dependencies. LSTM solves this using memory cells and gates.
+* Time series (stock prices)
+* Text (sentences)
+* Speech signals
 
 ---
 
-## 🔑 Key Components of LSTM
+## ❗ 2. Problem with RNN
 
-### 1️⃣ Cell State (Memory)
+Traditional RNN suffers from:
 
-* Stores long-term information
+* Vanishing Gradient Problem
+* Cannot remember long-term dependencies
 
-### 2️⃣ Gates in LSTM
-
-* **Forget Gate** → Decides what to remove
-* **Input Gate** → Decides what to add
-* **Output Gate** → Decides what to output
+Example:
+In a long sentence, RNN forgets earlier words.
 
 ---
 
-## 🧮 LSTM Working (Equations)
+## 🚀 3. Why LSTM?
+
+LSTM solves this problem by introducing:
+
+* Memory cell
+* Gates to control information flow
+
+---
+
+## 🧩 4. LSTM Architecture
+
+LSTM consists of:
+
+* Cell State (Cₜ)
+* Hidden State (hₜ)
+* Gates:
+
+  * Forget Gate
+  * Input Gate
+  * Output Gate
+
+---
+
+## 🔑 5. Gates in LSTM
+
+### 1. Forget Gate
+
+* Decides what information to remove
+* Uses sigmoid function (0 to 1)
+
+If value ≈ 0 → forget
+If value ≈ 1 → keep
+
+### 2. Input Gate
+
+* Decides what new information to add
+* Updates cell state
+
+### 3. Output Gate
+
+* Decides what to output
+* Produces hidden state
+
+---
+
+## 🧮 6. LSTM Working (Step-by-Step)
+
+1. Forget old information
+2. Add new information
+3. Update cell state
+4. Generate output
+
+---
+
+## 📐 7. Important Equations
 
 Forget Gate:
-f_t = σ(W_f · [h_{t-1}, x_t] + b_f)
+fₜ = σ(Wf · [hₜ₋₁, xₜ] + bf)
 
 Input Gate:
-i_t = σ(W_i · [h_{t-1}, x_t] + b_i)
+iₜ = σ(Wi · [hₜ₋₁, xₜ] + bi)
 
-Candidate State:
-C̃_t = tanh(W_c · [h_{t-1}, x_t] + b_c)
+Candidate Memory:
+C̃ₜ = tanh(Wc · [hₜ₋₁, xₜ] + bc)
 
-Cell State Update:
-C_t = f_t * C_{t-1} + i_t * C̃_t
+Cell State:
+Cₜ = fₜ * Cₜ₋₁ + iₜ * C̃ₜ
 
 Output Gate:
-o_t = σ(W_o · [h_{t-1}, x_t] + b_o)
+oₜ = σ(Wo · [hₜ₋₁, xₜ] + bo)
 
 Hidden State:
-h_t = o_t * tanh(C_t)
+hₜ = oₜ * tanh(Cₜ)
 
 ---
 
-## 📊 Advantages
+## 📊 8. Advantages
 
-* Handles long-term dependencies
-* Avoids vanishing gradient problem
-* Works well with time series & text
+* Captures long-term dependencies
+* Solves vanishing gradient problem
+* Works well for sequence data
 
 ---
 
-## ⚠️ Limitations
+## ⚠️ 9. Limitations
 
-* Computationally expensive
+* Complex architecture
+* High computation cost
 * Requires more data
-* Slower than simple models
 
 ---
 
-## 🧠 Applications
+## 🧠 10. Applications
 
-* Time Series Forecasting
-* Natural Language Processing
-* Speech Recognition
-* Stock Prediction
-
----
-
-## 📚 Learning Resources
-
-* Deep Learning by Ian Goodfellow
-* Andrew Ng Sequence Models
+* Stock price prediction
+* Sentiment analysis
+* Speech recognition
+* Language translation
 
 ---
 
-## 🚀 Future Updates
+## 🔄 11. LSTM vs RNN vs GRU
 
-* Code implementations
-* Real-world datasets
-* Model optimization
+| Feature     | RNN   | LSTM | GRU    |
+| ----------- | ----- | ---- | ------ |
+| Memory      | Short | Long | Medium |
+| Complexity  | Low   | High | Medium |
+| Gates       | No    | 3    | 2      |
+| Performance | Low   | High | High   |
 
 ---
 
-## ✍️ Author
+## 💡 12. Key Points to Remember
 
-Your Name
+* LSTM = RNN + Memory + Gates
+* Works best for sequential/time-based data
+* Uses sigmoid & tanh activation functions
+* Maintains long-term dependencies
+
+---
+
+## 📚 13. Conclusion
+
+LSTM is a powerful deep learning model for handling sequence data, widely used in NLP and forecasting.
